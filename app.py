@@ -3,7 +3,8 @@ from flask_cors import CORS
 from youtube_transcript_api import YouTubeTranscriptApi
 import requests
 from bs4 import BeautifulSoup
-import pickle
+# import pickle
+import numpy as np
 
 app = Flask(__name__)
 CORS(app)
@@ -25,11 +26,11 @@ def get_video_transcript(video_id):
     transcript = YouTubeTranscriptApi.get_transcript(video_id)
     return transcript
 
-with open('model.pkl', 'rb') as f:
-    model = pickle.load(f)
+# with open('model.pkl', 'rb') as f:
+#     model = pickle.load(f)
 
-with open('vector.pkl', 'rb') as f:
-    vectorizer = pickle.load(f)
+# with open('vector.pkl', 'rb') as f:
+#    vectorizer = pickle.load(f)
 
 @app.route('/transcript', methods=['POST'])
 def get_transcript():
