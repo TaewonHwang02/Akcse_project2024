@@ -28,9 +28,19 @@ function fetchTranscript(url) {
   .then(data => {
     if (data.error) {
       document.getElementById('transcript').textContent = 'Error: ' + data.error;
+      document.getElementById('title').textContent = ''; // Clear title in case of error
+      document.getElementById('download').style.display = 'none';
     } else {
       document.getElementById('title').textContent = data.title;
-      document.getElementById('transcript').textContent = data.transcript;
+      document.getElementById('transcript').textContent = data.transcript || 'Transcript not available';
+      
+      // Display prediction
+      const predictionElement = document.createElement('p');
+      predictionElement.id = 'prediction';
+      predictionElement.textContent = 'Prediction: ' + (data.prediction !== undefined ? data.prediction : 'Not available');
+      document.body.appendChild(predictionElement);
+      
+      // Handle download
       document.getElementById('download').style.display = 'block';
       document.getElementById('download').onclick = function() {
         downloadTranscript(data.title, data.transcript);
@@ -39,6 +49,8 @@ function fetchTranscript(url) {
   })
   .catch(error => {
     document.getElementById('transcript').textContent = 'Error: ' + error;
+    document.getElementById('title').textContent = ''; // Clear title in case of error
+    document.getElementById('download').style.display = 'none';
   });
 }
 
