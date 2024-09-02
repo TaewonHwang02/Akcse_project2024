@@ -109,7 +109,7 @@ def get_transcript():
         if not transcript:
             return jsonify({'error': 'Transcript is empty or could not be fetched'}), 400
         
-        formatted_transcript = '\n'.join([f"{entry['start']}: {entry['text']}" for entry in transcript])
+        formatted_transcript = ' '.join(entry['text'] for entry in transcript)
         prediction = process_text(formatted_transcript)
         
         return jsonify({
