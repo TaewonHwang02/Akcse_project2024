@@ -37,7 +37,13 @@ function fetchTranscript(url) {
       // Display prediction
       const predictionElement = document.createElement('p');
       predictionElement.id = 'prediction';
-      predictionElement.textContent = 'Prediction: ' + (data.prediction !== undefined ? data.prediction : 'Not available');
+      if (data.prediction === 1) {
+        predictionElement.textContent = 'Attention: the video you have clicked on likely contains Eating Disorder triggering content.';
+      } else if (data.prediction === 0) {
+        predictionElement.textContent = 'safe video';
+      } else {
+        predictionElement.textContent = 'Prediction not available';
+      }
       document.body.appendChild(predictionElement);
       
       // Handle download
