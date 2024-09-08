@@ -4,8 +4,8 @@
   "version": "1.0",
   "permissions": [
     "tabs",
-    "activeTab"
-
+    "activeTab",
+    "scripting"
   ],
   "action": {
     "default_popup": "popup.html"
@@ -13,4 +13,5 @@
   "background": {
     "service_worker": "background.js"
   }
+ 
 }
