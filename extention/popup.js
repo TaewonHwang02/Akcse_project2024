@@ -88,7 +88,7 @@ function downloadTranscript(title, transcript) {
 
 function createOverlay() {
   if (window.location.href.includes('youtube.com/watch')) {
-    console.log("YouTube video detected, adding overlay.");
+    console.log("Attention: the video you have clicked on likely contains Eating Disorder triggering content.");
 
     let overlay = document.createElement('div');
     overlay.style.position = 'fixed';
@@ -108,7 +108,7 @@ function createOverlay() {
     contentDiv.style.textAlign = 'center';
 
     let paragraph = document.createElement('p');
-    paragraph.textContent = "This video may trigger eating disorder .....";
+    paragraph.textContent = "Attention: the video you have clicked on likely contains Eating Disorder triggering content.";
 
     let button = document.createElement('button');
     button.textContent = "Dismiss";
@@ -118,6 +118,8 @@ function createOverlay() {
 
     button.addEventListener('click', function() {
       overlay.remove();
+      chrome.runtime.sendMessage({ action: 'unmuteTab' });
+      console.log("Sending message to unmute the tab.");
     });
 
     contentDiv.appendChild(paragraph);
