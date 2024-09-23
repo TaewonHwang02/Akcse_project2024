@@ -90,46 +90,68 @@ function createOverlay() {
   if (window.location.href.includes('youtube.com/watch')) {
     console.log("Attention: the video you have clicked on likely contains Eating Disorder triggering content.");
 
-    let overlay = document.createElement('div');
-    overlay.style.position = 'fixed';
-    overlay.style.top = '0';
-    overlay.style.left = '0';
-    overlay.style.width = '70%';
-    overlay.style.height = '80%';
-    overlay.style.backgroundColor = 'rgba(0, 0, 0, 0.9)';
-    overlay.style.color = 'white';
-    overlay.style.display = 'flex';
-    overlay.style.alignItems = 'center';
-    overlay.style.justifyContent = 'center';
-    overlay.style.fontSize = '24px';
-    overlay.style.zIndex = '100000';
+    // Select the YouTube video element
+    let videoElement = document.querySelector('video');
 
-    let contentDiv = document.createElement('div');
-    contentDiv.style.textAlign = 'center';
+    if (videoElement) {
+      // Get the position and dimensions of the video
+      let videoRect = videoElement.getBoundingClientRect();
 
-    let paragraph = document.createElement('p');
-    paragraph.textContent = "Attention: the video you have clicked on likely contains Eating Disorder triggering content.";
+      let overlay = document.createElement('div');
+      overlay.style.position = 'absolute';  // Use 'absolute' positioning relative to the video element
+      overlay.style.top = `${videoRect.top}px`;
+      overlay.style.left = `${videoRect.left}px`;
+      overlay.style.width = `${videoRect.width}px`;
+      overlay.style.height = `${videoRect.height}px`;
+      overlay.style.backgroundColor = 'rgba(0, 0, 0, 0.9)';
+      overlay.style.color = 'white';
+      overlay.style.display = 'flex';
+      overlay.style.alignItems = 'center';
+      overlay.style.justifyContent = 'center';
+      overlay.style.fontSize = '24px';
+      overlay.style.zIndex = '100000';  // High z-index to ensure it appears over the video
+      overlay.style.pointerEvents = 'none';  // Disable pointer events on the overlay itself
 
-    let button = document.createElement('button');
-    button.textContent = "Dismiss";
-    button.style.padding = '10px 20px';
-    button.style.fontSize = '18px';
-    button.style.cursor = 'pointer';
+      let contentDiv = document.createElement('div');
+      contentDiv.style.textAlign = 'center';
+      contentDiv.style.pointerEvents = 'auto';  // Enable pointer events only on the content div
 
-    button.addEventListener('click', function() {
-      overlay.remove();
-      chrome.runtime.sendMessage({ action: 'unmuteTab' });
-      console.log("Sending message to unmute the tab.");
-    });
+      let paragraph = document.createElement('p');
+      paragraph.innerHTML = "<h3>Sensitive Content Ahead</h3> <br> Themes of eating disorders are present. If this is difficult for you, know that your feelings are valid, and that you're not alone";
 
-    contentDiv.appendChild(paragraph);
-    contentDiv.appendChild(button);
-    overlay.appendChild(contentDiv);
-    document.body.appendChild(overlay);
+      let button = document.createElement('button');
+      button.textContent = "Dismiss";
+      button.style.padding = '10px 20px';
+      button.style.fontSize = '18px';
+      button.style.cursor = 'pointer';
+      button.style.zIndex = '100001';  // Ensure button appears above overlay
+      button.style.pointerEvents = 'auto';  // Ensure button is clickable
 
-    console.log("Overlay added to the page");
+      button.addEventListener('click', function() {
+        // Show a confirmation dialog
+        let isSure = confirm("Are you sure you want to dismiss this message and unmute the video?");
+
+        // If the user confirms
+        if (isSure) {
+          // Remove the overlay
+          overlay.remove();
+
+          // Send message to unmute the tab
+          chrome.runtime.sendMessage({ action: 'unmuteTab' });
+          console.log("Sending message to unmute the tab.");
+        }
+      });
+
+      contentDiv.appendChild(paragraph);
+      contentDiv.appendChild(button);
+      overlay.appendChild(contentDiv);
+      
+      // Append overlay to body or video container
+      document.body.appendChild(overlay);
+
+      console.log("Overlay added to fit the video.");
+    } else {
+      console.log("Video element not found.");
+    }
   }
-}
-function muteAudio(){
-
 }
