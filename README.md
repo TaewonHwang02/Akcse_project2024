@@ -20,9 +20,13 @@ pip install -r requirements.txt
 This will install:
 
 Flask: A lightweight web application framework.
+
 Flask-CORS: To handle Cross-Origin Resource Sharing (CORS) for Flask.
+
 YouTube Transcript API: To fetch transcripts from YouTube.
+
 BeautifulSoup (bs4): A library for parsing HTML and XML.
+
 scikit-learn: A machine learning library for Python.
 
 3. **Run the Application**:
