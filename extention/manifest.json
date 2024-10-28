@@ -2,10 +2,19 @@
   "manifest_version": 3,
   "name": "Eating Disorder Detector",
   "version": "1.0",
+  "icons": {
+    "16": "images/EDBlock.png",
+    "48": "images/EDBlock.png",
+    "128": "images/EDBlock.png"
+  },
   "permissions": [
     "tabs",
     "activeTab",
     "scripting"
+  ],
+  "host_permissions": [
+    "https://nedic.ca/help-for-yourself/",
+    "https://github.com/TaewonHwang02/Akcse_project2024"
   ],
   "action": {
     "default_popup": "popup.html"

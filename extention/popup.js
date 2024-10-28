@@ -104,7 +104,7 @@ function createOverlay() {
       overlay.style.width = `${videoRect.width}px`;
       overlay.style.height = `${videoRect.height}px`;
       overlay.style.backgroundColor = 'rgba(0, 0, 0, 0.9)';
-      overlay.style.color = 'white';
+      overlay.style.color = '#343F2B';
       overlay.style.display = 'flex';
       overlay.style.alignItems = 'center';
       overlay.style.justifyContent = 'center';
@@ -117,19 +117,22 @@ function createOverlay() {
       contentDiv.style.pointerEvents = 'auto';  // Enable pointer events only on the content div
 
       let paragraph = document.createElement('p');
-      paragraph.innerHTML = "<h3>Sensitive Content Ahead</h3> <br> Themes of eating disorders are present. If this is difficult for you, know that your feelings are valid, and that you're not alone";
+      paragraph.innerHTML = "<h3>Warning: Sensitive Content</h3> <br> Themes of eating disorders are present. YouTube hosts content from individual creators, and not all material may promote healthy views. Be mindful of your exposure and well-being. If this is difficult for you, click on our 'Resources' link to find the necessary support.";
 
       let button = document.createElement('button');
       button.textContent = "Dismiss";
-      button.style.padding = '10px 20px';
+      button.style.width = '80vw';
+      button.style.height = '39px';
       button.style.fontSize = '18px';
+      button.style.backgroundColor = 'white';
+      button.style.color = '#343F2B';
       button.style.cursor = 'pointer';
       button.style.zIndex = '100001';  // Ensure button appears above overlay
       button.style.pointerEvents = 'auto';  // Ensure button is clickable
 
       button.addEventListener('click', function() {
         // Show a confirmation dialog
-        let isSure = confirm("Are you sure you want to dismiss this message and unmute the video?");
+        let isSure = confirm("Are you sure you want to dismiss this message?");
 
         // If the user confirms
         if (isSure) {

@@ -1,0 +1,46 @@
+body {
+    font-family: 'Inter', Arial, sans-serif;
+    padding: 20px;
+    display: flex;
+    box-sizing: border-box;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: max(20vw, 230px); /* Width is 20% of viewport or 200px, whichever is greater */
+    background-image: url("images/bg.png"); /* Path to your background image */
+    background-size: contain; /* Ensures the image covers the entire background */
+    background-position: bottom; /* Centers the image */
+    background-repeat: no-repeat;
+}
+
+img {
+    max-width: 100%; /* Ensure the image doesn't overflow the popup width */
+    height: auto;
+    display: block;
+    margin: 0 auto; /* Centers the image */
+}
+
+h2 {
+    font-size: 8vw;
+    text-align: center;
+    margin-top: 20px;
+    display: block;
+}
+
+.link-button {
+    width: 65vw;
+    height: 29px;
+    font-size: 6vw;
+    margin: 8px;
+    color: #343F2B;
+    background-color: white;
+    border: 1.2px solid #343F2B;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-weight: bold;
+}
+
+.link-button:hover {
+    background-color: #e5e8e2;
+}
