@@ -89,13 +89,14 @@ function downloadTranscript(title, transcript) {
 function createOverlay() {
   if (window.location.href.includes('youtube.com/watch')) {
     console.log("Attention: the video you have clicked on likely contains Eating Disorder triggering content.");
-
+    
     // Select the YouTube video element
     let videoElement = document.querySelector('video');
 
     if (videoElement) {
       // Get the position and dimensions of the video
       let videoRect = videoElement.getBoundingClientRect();
+      
 
       let overlay = document.createElement('div');
       overlay.style.position = 'absolute';  // Use 'absolute' positioning relative to the video element
@@ -103,12 +104,13 @@ function createOverlay() {
       overlay.style.left = `${videoRect.left}px`;
       overlay.style.width = `${videoRect.width}px`;
       overlay.style.height = `${videoRect.height}px`;
-      overlay.style.backgroundColor = 'rgba(0, 0, 0, 0.9)';
-      overlay.style.color = '#343F2B';
+      overlay.style.backgroundColor = '#343F2B';
+      overlay.style.color = 'white';
       overlay.style.display = 'flex';
       overlay.style.alignItems = 'center';
       overlay.style.justifyContent = 'center';
-      overlay.style.fontSize = '24px';
+      
+      overlay.style.fontSize = '18px';
       overlay.style.zIndex = '100000';  // High z-index to ensure it appears over the video
       overlay.style.pointerEvents = 'none';  // Disable pointer events on the overlay itself
 
@@ -117,13 +119,16 @@ function createOverlay() {
       contentDiv.style.pointerEvents = 'auto';  // Enable pointer events only on the content div
 
       let paragraph = document.createElement('p');
-      paragraph.innerHTML = "<h3>Warning: Sensitive Content</h3> <br> Themes of eating disorders are present. YouTube hosts content from individual creators, and not all material may promote healthy views. Be mindful of your exposure and well-being. If this is difficult for you, click on our 'Resources' link to find the necessary support.";
+      paragraph.innerHTML = "<h2>Warning: Sensitive Content</h2> <br> Themes of eating disorders are present. YouTube hosts content from individual creators, and not all material may promote healthy views. Be mindful of your exposure and well-being. If this is difficult for you, click on our 'Resources' link to find the necessary support.";
+      paragraph.style.padding = '10vw';
+      paragraph.style.paddingBottom = '2vw';
 
       let button = document.createElement('button');
       button.textContent = "Dismiss";
-      button.style.width = '80vw';
+      button.style.width = '10vw';
+      button.style.borderRadius = '20px';
       button.style.height = '39px';
-      button.style.fontSize = '18px';
+      button.style.fontSize = '16px';
       button.style.backgroundColor = 'white';
       button.style.color = '#343F2B';
       button.style.cursor = 'pointer';
