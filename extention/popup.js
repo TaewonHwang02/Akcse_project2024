@@ -121,6 +121,7 @@ function createOverlay() {
       let paragraph = document.createElement('p');
       paragraph.innerHTML = "<h2>Warning: Sensitive Content</h2> <br> Themes of eating disorders are present. YouTube hosts content from individual creators, and not all material may promote healthy views. Be mindful of your exposure and well-being. If this is difficult for you, click on our 'Resources' link to find the necessary support.";
       paragraph.style.padding = '10vw';
+      paragraph.style.paddingTop = '3vw';
       paragraph.style.paddingBottom = '2vw';
 
       let button = document.createElement('button');
